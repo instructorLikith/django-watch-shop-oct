@@ -1,58 +1,70 @@
-{% extends 'main.html' %} {% block body_block %}
-{% load static %}
-<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img 
+{% extends 'main.html' %} {% block body_block %} {% load static %}
+<div
+  id="carouselExampleControls"
+  class="carousel slide"
+  data-bs-ride="carousel"
+>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img
         class="d-block w-100"
-        src="{%static '/homepage/images/Sample1.jpg' %}"  
-        alt="Sample1">
-      </div>
-      <div class="carousel-item">
-        <img src="{%static '/homepage/images/Sample2.jpg' %}" alt="Sample2">
-      </div>
-      <div class="carousel-item">
-        <img src="..." class="d-block w-100" alt="...">
-      </div>
+        src="{%static '/homepage/images/Sample1.jpg' %}"
+        alt="Sample1"
+      />
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
+    <div class="carousel-item">
+      <img
+        class="d-block w-100"
+        src="{%static '/homepage/images/Sample2.jpg' %}"
+        alt="Sample2"
+      />
+    </div>
   </div>
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#carouselExampleControls"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#carouselExampleControls"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
 
-  <div style="background-color: beige;
-  width: 100%;
-  text-align: center;
-  height: 50px;
-  margin: 10px;">
-<h5>We are Providing 50% Off on all the products</h5></div>
+<div
+  style="
+    background-color: beige;
+    width: 100%;
+    text-align: center;
+    height: 50px;
+    margin: 10px;
+  "
+>
+  <h5>We are Providing 50% Off on all the products</h5>
+</div>
 
-<div class = 'container'>
-    <div class="row"></div>
-    {% for w_item in watches_t %}
+<div class="row">
+  {% for w_item in watches_t %}
 
-    
   <!-- Card Section  -->
-   <div class="col">
-  <div class="card" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
+  <div class="card" style="width: 18rem; margin: 5px">
+    <img src="..." class="card-img-top" alt="..." />
     <div class="card-body">
       <h5 class="card-title">{{w_item.name}}</h5>
-      <p class="card-text">{{w_item.descr}}</p>
-      <p class = "card-text">{{w_item.price}}</p>
+      <p class="card-text">{{w_item.description}}</p>
+      <p class="card-text">{{w_item.price}}</p>
       <a href="#" class="btn btn-primary">Go somewhere</a>
     </div>
   </div>
+  {% endfor %}
 </div>
-{% endfor %}
-  </div>
-  
-</div>
- 
 {% endblock %}
-
