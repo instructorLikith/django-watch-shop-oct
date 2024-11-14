@@ -96,6 +96,13 @@
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
             Search
           </button>
+        
+          {% if user.is_authenticated %}
+          <h4> {{user.username}}</h4>
+          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+          {% else %}
+          <a class="nav-link" href="{% url 'login' %}">Login</a>
+          {% endif %}
         </form>
       </div>
     </nav>
