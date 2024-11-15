@@ -57,12 +57,12 @@
 
   <!-- Card Section  -->
   <div class="card" style="width: 18rem; margin: 5px">
-    <img src="..." class="card-img-top" alt="..." />
+    <img src="{{w_item.image.url}}" class="card-img-top" alt="..." />
     <div class="card-body">
       <h5 class="card-title">{{w_item.name}}</h5>
       <p class="card-text">{{w_item.description}}</p>
       <p class="card-text">{{w_item.price}}</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <a href="{% url 'product' id=w_item.id %}" class="btn btn-primary">Click Here</a>
     </div>
   </div>
   {% endfor %}

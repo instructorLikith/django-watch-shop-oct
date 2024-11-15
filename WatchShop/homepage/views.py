@@ -74,7 +74,7 @@ def logout_user(request):
     logout(request)
     return redirect('home')
 
-
-
-
-
+from django.shortcuts import get_object_or_404
+def show_product(request, id):
+    product = get_object_or_404(WatchesUploads, id=id)
+    return render(request, "product.html", {"product": product} )
