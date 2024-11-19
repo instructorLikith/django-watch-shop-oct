@@ -18,8 +18,8 @@ class UploadForm(forms.ModelForm):
         required = True
     )
 
-    image = forms.CharField(
-        widget = forms.ClearableFileInput(attrs={'class': 'form-control'}),
+    image = forms.ImageField(
+        widget = forms.ClearableFileInput(attrs={'class': 'form-control', 'type': 'file'}),
         required = True
         )
 

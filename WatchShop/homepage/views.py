@@ -17,10 +17,14 @@ def About(request):
 @login_required(login_url='login')
 def Upload(request):
     if request.method == 'POST':
+        print(request.FILES)
         form = UploadForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            instance = form.save()
+            print(f"File saved to: {instance.image.path}")
             return redirect('home')
+        else:
+            print("Form is invalid:", form.errors)
     else:
         form = UploadForm()
 
@@ -96,4 +100,4 @@ def removewish(request, id):
     product_rm = WatchesUploads.objects.get(id=id)
     wish_obj = Wishlist.objects.get(user=request.user)
     wish_obj.products.remove(product_rm)
-    return render(request, 'wishcart.html', {"user_product": wish_obj.products.all()})
+    return render(request, 'wishcart.html', {"user_products": wish_obj.products.all()})
