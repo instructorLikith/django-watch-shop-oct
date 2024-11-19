@@ -63,6 +63,7 @@
       <p class="card-text">{{w_item.description}}</p>
       <p class="card-text">{{w_item.price}}</p>
       <a href="{% url 'product' id=w_item.id %}" class="btn btn-primary">Click Here</a>
+      <a href="{% url 'addtowish' id=w_item.id %}" class="btn btn-primary">+ Wishlist</a>
     </div>
   </div>
   {% endfor %}

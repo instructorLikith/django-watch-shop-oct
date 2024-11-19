@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Watches, WatchesUploads
+from .models import Watches, WatchesUploads, Wishlist, Cart
 from .forms import UploadForm
 from django.contrib.auth.decorators import login_required
 
@@ -78,3 +78,22 @@ from django.shortcuts import get_object_or_404
 def show_product(request, id):
     product = get_object_or_404(WatchesUploads, id=id)
     return render(request, "product.html", {"product": product} )
+
+def addtowish(request, id):
+    user = request.user
+    product = WatchesUploads.objects.get(id=id)
+    obj1, created = Wishlist.objects.get_or_create(user=user)
+    obj1.products.add(product)
+    obj1.save()
+    return redirect('home')
+
+def show_wishlist(request):
+    user = request.user
+    wish_object = Wishlist.objects.get(user=user)
+    return render(request, "wishcart.html", {"user_products": wish_object.products.all()})
+
+def removewish(request, id):
+    product_rm = WatchesUploads.objects.get(id=id)
+    wish_obj = Wishlist.objects.get(user=request.user)
+    wish_obj.products.remove(product_rm)
+    return render(request, 'wishcart.html', {"user_product": wish_obj.products.all()})
