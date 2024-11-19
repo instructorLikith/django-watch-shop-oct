@@ -94,10 +94,29 @@ def addtowish(request, id):
 def show_wishlist(request):
     user = request.user
     wish_object = Wishlist.objects.get(user=user)
-    return render(request, "wishcart.html", {"user_products": wish_object.products.all()})
+    return render(request, "wishlist.html", {"user_products": wish_object.products.all()})
 
 def removewish(request, id):
     product_rm = WatchesUploads.objects.get(id=id)
     wish_obj = Wishlist.objects.get(user=request.user)
     wish_obj.products.remove(product_rm)
-    return render(request, 'wishcart.html', {"user_products": wish_obj.products.all()})
+    return render(request, 'wishlist.html', {"user_products": wish_obj.products.all()})
+
+def addtocart(request, id):
+    user = request.user
+    product = WatchesUploads.objects.get(id=id)
+    obj1, created = Cart.objects.get_or_create(user=user)
+    obj1.products.add(product)
+    obj1.save()
+    return redirect('home')
+
+def show_cart(request):
+    user = request.user
+    wish_object = Cart.objects.get(user=user)
+    return render(request, "cart.html", {"user_products": wish_object.products.all()})
+
+def removeCart(request, id):
+    product_rm = WatchesUploads.objects.get(id=id)
+    cart_obj = Cart.objects.get(user=request.user)
+    cart_obj.products.remove(product_rm)
+    return render(request, 'cart.html', {"user_products": cart_obj.products.all()})
